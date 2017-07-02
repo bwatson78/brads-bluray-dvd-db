@@ -88,10 +88,10 @@ class ApplicationController < Sinatra::Base
         @movie = Movie.find(params[:id])
         @movie.update(params[:movie])
         if !params["actor"]["name"].empty?
-          @movie.actors << Actor.create(name: params["actor"]["name"])
+          @movie.actors << Actor.find_or_create_by(name: params["actor"]["name"])
         end
         if !params["actor_2"]["name"].empty?
-          @movie.actors << Actor.create(name: params["actor_2"]["name"])
+          @movie.actors << Actor.find_or_create_by(name: params["actor_2"]["name"])
         end
         @movie.save
         redirect("/movies/#{@movie.id}")
