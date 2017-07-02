@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Edit a movie in your database:</h1>
+
+      <form action="/movies/<%=@movie.id%>" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="PATCH">
+        <h3>Movie Title:</h3>
+        <input type="text" name="movie[name]" value="<%=@movie.name%>">
+        <h3>Year Movie Released:</h3>
+        <input type="number" name="movie[year_released]" value="<%=@movie.year_released%>">
+        <h3>Format: </h3><select name="movie[format]">
+          <option value="B" <%= 'selected' if @movie.format == "B"%>>Blu-Ray</option>
+          <option value="D" <%= 'selected' if @movie.format == "D"%>>DVD</option>
+        </select>
+        <h3>Movie's Director:</h3>
+        <input type="text" name="movie[director]" value="<%=@movie.director%>">
+        <br>
+
+        <h3>Main Actors/Actress:</h3>
+        <%Actor.all.each do |actor|%>
+          <input type="checkbox" name="movie[actor_ids][]" value="<%=actor.id%>" <%='checked' if @movie.actors.ids.include?(actor.id) %>><%=actor.name%></input>
+        <%end%>
+
+          <h3>Or, if not listed, type actor/actress name here:</h3>
+          <h3>Main Actor/Actress #1:</h3>
+            <input type="text" name="actor[name]">
+          <h3>Main Actor/Actress #2:</h3>
+            <input type="text" name="actor_2[name]">
+
+        <input type="submit" value="Update" id="submit">
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+      <form action="/" method="GET">
+        <input id="hidden" type="hidden" name="_method" value="HOME">
+        <input type="submit" value="Home">
+      </form>
+
+      <form action="/logout" method="GET">
+        <input id="hidden" type="hidden" name="_method" value="LOGOUT">
+        <input type="submit" value="Logout">
+      </form>
+    </div>
+  </div>
+</div>

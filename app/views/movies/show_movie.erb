@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1><%=@movie.name%></h1>
+      <h3>Year Released:</h3> <%=@movie.year_released%>
+      <% if @movie.format == "B" %>
+        <h3>Format:</h3> Blu-Ray
+      <% else %>
+        <h3>Format:</h3> DVD
+      <% end %>
+      <h3>Director:</h3> <%=@movie.director%>
+      <br>
+
+
+      <h3>Main Actors/Actresses:</h3>
+        <% @movie.actors.each do |actor| %>
+          <p><%=actor.name%></p>
+        <% end %>
+
+        <form action="<%=@movie.id%>/edit" method="GET">
+          <input type="submit" value="Edit Movie">
+        </form>
+
+        <form action="<%=@movie.id%>/delete" method="POST">
+          <input id="hidden" type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete Movie">
+        </form>
+
+        <form action="/" method="GET">
+          <input type="submit" value="Home">
+        </form>
+
+        <form action="/logout" method="GET">
+          <input id="hidden" type="hidden" name="_method" value="LOGOUT">
+          <input type="submit" value="Logout">
+        </form>
+
+    </div>
+  </div>
+</div>

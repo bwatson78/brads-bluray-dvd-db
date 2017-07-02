@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Sign up for our site!</h1>
+        <form action="/signup" method="POST">
+          <label for="username">Username: </label>
+          <input type="text" name="username">
+          <br />
+          <br />
+          <label for="email">Email: </label>
+          <input type="text" name="email">
+          <br />
+          <br />
+          <label for="password">Password: </label>
+          <input type="text" name="password">
+          <br />
+          <br />
+          <input type="submit" value="Submit">
+        </form>
+
+        <form action="/" method="GET">
+          <input id="hidden" type="hidden" name="_method" value="HOME">
+          <input type="submit" value="Home">
+        </form>
+    </div>
+  </div>
+</div>

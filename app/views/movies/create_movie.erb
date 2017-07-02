@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Add a movie to your database:</h1>
+
+      <form action="/movies" method="POST">
+        <label>Movie Title:</label>
+        <input type="text" name="movie[name]">
+        <br>
+        <label>Year Movie Released:</label>
+        <input type="number" name="movie[year_released]" min="0">
+        <br>
+        <label>Movie's Director:</label>
+        <input type="text" name="movie[director]">
+        <br><br>
+        <label>Main Actors/Actress:</label>
+        <%Actor.all.each do |actor|%>
+          <input type="checkbox" name="movie[actor_ids][]" value="<%=actor.id%>" id="<%=actor.id%>"><%=actor.name%></input>
+        <%end%>
+        <br>
+        <label>Or, if not listed, type actor/actress name here:</label>
+        <br></br>
+        <label>Main Actors/Actress:</label>
+          <input type="text" name="actor[name]">
+        <br>
+        <label>Main Actor/Actress #2:</label>
+          <input type="text" name="actor_2[name]">
+        <br><br>
+        <label>Format: </label><select name="movie[format]">
+          <option value="B">Blu-Ray</option>
+          <option value="D">DVD</option>
+        </select>
+
+        <input type="submit" value="Submit" id="submit">
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <form action="/" method="GET">
+        <input id="hidden" type="hidden" name="_method" value="HOME">
+        <input type="submit" value="Home">
+      </form>
+
+      <form action="/logout" method="GET">
+        <input id="hidden" type="hidden" name="_method" value="LOGOUT">
+        <input type="submit" value="Logout">
+      </form>
+    </div>
+  </div>
+</div>
